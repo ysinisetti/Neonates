@@ -1,0 +1,37 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+NFI_CMDWS_API_Runway_Context_v1.3.md
+artifacts/export_54b3a01c-1293-4875-8a62-f236e9356247.csv
+artifacts/export_99838ac6-cb19-49b3-bd2f-faff412967dc.csv
+artifacts/export_e46b32bb-b626-4de9-b574-463b69e6b840.csv
