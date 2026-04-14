@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/donors")
 @RequiredArgsConstructor
+@CrossOrigin
 public class DonorController {
 
     private final DonorService donorService;

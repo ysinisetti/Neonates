@@ -18,6 +18,11 @@
       "key": "hospital_id",
       "value": "1",
       "type": "string"
+    },
+    {
+      "key": "hospital_process_id",
+      "value": "1",
+      "type": "string"
     }
   ],
   "item": [
@@ -237,6 +242,119 @@
                 "api",
                 "hospitals",
                 "{{hospital_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "HospitalProcessMap",
+      "item": [
+        {
+          "name": "Create Mapping",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hospitalId\": {{hospital_id}},\n  \"processType\": \"BRC\",\n  \"effectiveFrom\": \"2024-01-01\",\n  \"effectiveTo\": \"2024-12-31\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/hospital-process-maps",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "hospital-process-maps"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Mapping",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hospitalId\": {{hospital_id}},\n  \"processType\": \"BRRC\",\n  \"effectiveFrom\": \"2024-01-01\",\n  \"effectiveTo\": \"2024-12-31\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/hospital-process-maps/{{hospital_process_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "hospital-process-maps",
+                "{{hospital_process_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Mappings by Hospital",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/hospital-process-maps/hospital/{{hospital_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "hospital-process-maps",
+                "hospital",
+                "{{hospital_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Active Mappings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/hospital-process-maps/active",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "hospital-process-maps",
+                "active"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Deactivate Mapping",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/hospital-process-maps/{{hospital_process_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "hospital-process-maps",
+                "{{hospital_process_id}}"
               ]
             }
           }
