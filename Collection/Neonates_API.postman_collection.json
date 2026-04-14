@@ -1,0 +1,126 @@
+{
+  "info": {
+    "name": "Neonates Donor API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "donor_id",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Create Donor",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"donorName\": \"John Doe\",\n  \"donorType\": \"Individual\",\n  \"contactEmail\": \"john@example.com\",\n  \"activeFlag\": true\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/donors",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "donors"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Donor by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/donors/{{donor_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "donors",
+            "{{donor_id}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get All Donors",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/donors",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "donors"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Donor",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"donorName\": \"Jane Doe\",\n  \"donorType\": \"Corporate\",\n  \"contactEmail\": \"jane@example.com\",\n  \"activeFlag\": false\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/donors/{{donor_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "donors",
+            "{{donor_id}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Donor",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/donors/{{donor_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "donors",
+            "{{donor_id}}"
+          ]
+        }
+      }
+    }
+  ]
+}
