@@ -8,4 +8,6 @@ public interface CaseService {
     CaseResponseDTO createCase(CaseCreateRequestDTO dto);
 
     CaseResponseDTO getCaseById(Long caseId);
+
+    void deleteCase(Long caseId);
 }

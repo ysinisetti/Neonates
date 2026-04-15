@@ -4,6 +4,7 @@ public enum CaseStatus {
 
     Draft,
     Submitted,
+    Returned,
     Under_Verification,
     Under_Review,
     Approved,

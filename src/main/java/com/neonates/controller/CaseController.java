@@ -31,4 +31,11 @@ public class CaseController {
         CaseResponseDTO data = caseService.getCaseById(id);
         return ResponseEntity.ok(ApiResponse.success("Case fetched successfully", data, HttpStatus.OK.value(), true));
     }
+
+    // DELETE /api/cases/{id}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Void>> deleteCase(@PathVariable Long id) {
+        caseService.deleteCase(id);
+        return ResponseEntity.ok(ApiResponse.success("Case deleted successfully", null, HttpStatus.OK.value(), true));
+    }
 }

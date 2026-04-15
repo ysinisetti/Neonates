@@ -49,6 +49,13 @@ public class CaseServiceImpl implements CaseService {
         return caseMapper.toDTO(caseEntity);
     }
 
+    @Override
+    public void deleteCase(Long caseId) {
+        Case caseEntity = caseRepository.findById(caseId)
+                .orElseThrow(() -> new ResourceNotFoundException("Case not found with id: " + caseId));
+        caseRepository.delete(caseEntity);
+    }
+
     private Long generateCaseReferenceNo() {
         return caseReferenceCounter.incrementAndGet();
     }
