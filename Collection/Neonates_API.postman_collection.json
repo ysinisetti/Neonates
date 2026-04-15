@@ -1,6 +1,7 @@
 {
   "info": {
     "name": "Neonates API",
+    "description": "Complete Neonates API Collection - Includes Case, Child Profile, Family Profile, Financial Case Details, Clinical Case Details, Panel Assignment APIs. All endpoints are pre-configured with variables and sample request bodies for quick testing.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -36,6 +37,31 @@
     },
     {
       "key": "case_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "child_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "family_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "financial_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "clinical_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "panel_assignment_id",
       "value": "1",
       "type": "string"
     }
@@ -636,6 +662,429 @@
                 "api",
                 "cases",
                 "{{case_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Case",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/cases/{{case_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "cases",
+                "{{case_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Child Profile",
+      "item": [
+        {
+          "name": "Create Child Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseId\": {{case_id}},\n  \"beneficiaryNo\": \"BEN123\",\n  \"displayName\": \"Baby John\",\n  \"gender\": \"Male\",\n  \"dateOfBirth\": \"2026-04-10\",\n  \"birthStatus\": \"Inborn\",\n  \"birthHospitalName\": \"City Hospital\",\n  \"admissionDate\": \"2026-04-10\",\n  \"gestationalAgeWeeks\": 38.5,\n  \"birthWeightKg\": 3.2,\n  \"currentWeightKg\": 3.1,\n  \"nicuStayDays\": 5,\n  \"mortalityStatus\": \"Alive\",\n  \"morbidity\": \"None\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/child-profiles",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "child-profiles"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Child Profiles by Case ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/child-profiles/case/{{case_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "child-profiles",
+                "case",
+                "{{case_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Child Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseId\": {{case_id}},\n  \"beneficiaryNo\": \"BEN123\",\n  \"displayName\": \"Baby John Doe\",\n  \"gender\": \"Male\",\n  \"dateOfBirth\": \"2026-04-10\",\n  \"birthStatus\": \"Inborn\",\n  \"birthHospitalName\": \"City Hospital\",\n  \"admissionDate\": \"2026-04-10\",\n  \"gestationalAgeWeeks\": 38.5,\n  \"birthWeightKg\": 3.2,\n  \"currentWeightKg\": 3.3,\n  \"nicuStayDays\": 7,\n  \"mortalityStatus\": \"Alive\",\n  \"morbidity\": \"Improved\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/child-profiles/{{child_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "child-profiles",
+                "{{child_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Family Profile",
+      "item": [
+        {
+          "name": "Create Family Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseId\": {{case_id}},\n  \"fatherName\": \"John Doe Sr.\",\n  \"motherName\": \"Jane Doe\",\n  \"fatherOccupation\": \"Engineering\",\n  \"motherOccupation\": \"Teaching\",\n  \"fatherMonthlyIncome\": 50000.00,\n  \"motherMonthlyIncome\": 30000.00,\n  \"incomeCaptureBasis\": \"Monthly\",\n  \"fatherGovermentIdType\": \"Aadhar\",\n  \"motherGovermentIdType\": \"Aadhar\",\n  \"fatherGovermentId\": \"1234-5678-9012\",\n  \"motherGovermentId\": \"9876-5432-1098\",\n  \"maternalAge\": 28,\n  \"gravida\": 2,\n  \"para\": 1,\n  \"totalFamilyMembers\": 5\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/family-profiles",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "family-profiles"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Family Profile by Case ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/family-profiles/case/{{case_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "family-profiles",
+                "case",
+                "{{case_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Family Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseId\": {{case_id}},\n  \"fatherName\": \"John Doe Sr.\",\n  \"motherName\": \"Jane Doe\",\n  \"fatherOccupation\": \"Business\",\n  \"motherOccupation\": \"Healthcare\",\n  \"fatherMonthlyIncome\": 60000.00,\n  \"motherMonthlyIncome\": 40000.00,\n  \"incomeCaptureBasis\": \"Monthly\",\n  \"maternalAge\": 28,\n  \"gravida\": 2,\n  \"para\": 1,\n  \"totalFamilyMembers\": 5\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/family-profiles/{{family_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "family-profiles",
+                "{{family_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Financial Case Details",
+      "item": [
+        {
+          "name": "Create Financial Case Details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseId\": {{case_id}},\n  \"incomeProofType\": \"Bank_Statement\",\n  \"bankStatementMonthsCount\": 6,\n  \"economicCardType\": \"White Card\",\n  \"bplAplStatus\": \"BPL\",\n  \"advancePaidAmount\": 5000.00,\n  \"medicalBillEstimate\": 100000.00,\n  \"estimatedNicuDays\": 14,\n  \"hospitalDiscountAmount\": 10000.00,\n  \"reductionAmount\": 5000.00,\n  \"reductionNotes\": \"Government subsidy approved\",\n  \"sponsorAmountQuantified\": 30000.00,\n  \"sponsorAmountFinal\": 25000.00,\n  \"financialSummarySnapshot\": \"Case approved for full financial coverage\",\n  \"manualExceptionNotes\": \"Approved by committee\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/financial-details",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "financial-details"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Financial Details by Case ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/financial-details/case/{{case_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "financial-details",
+                "case",
+                "{{case_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Financial Case Details",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseId\": {{case_id}},\n  \"incomeProofType\": \"Income_Certificate\",\n  \"bankStatementMonthsCount\": 12,\n  \"economicCardType\": \"Yellow Card\",\n  \"bplAplStatus\": \"APL\",\n  \"advancePaidAmount\": 10000.00,\n  \"medicalBillEstimate\": 120000.00,\n  \"estimatedNicuDays\": 21,\n  \"hospitalDiscountAmount\": 15000.00,\n  \"reductionAmount\": 8000.00,\n  \"reductionNotes\": \"Additional government subsidy\",\n  \"sponsorAmountQuantified\": 40000.00,\n  \"sponsorAmountFinal\": 35000.00,\n  \"financialSummarySnapshot\": \"Case re-approved with increased coverage\",\n  \"manualExceptionNotes\": \"Updated after review\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/financial-details/{{financial_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "financial-details",
+                "{{financial_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Clinical Case Details",
+      "item": [
+        {
+          "name": "Create Clinical Case Details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseId\": {{case_id}},\n  \"primaryDiagnosis\": \"Premature birth\",\n  \"caseSummary0\": \"Baby born at 32 weeks gestation\",\n  \"caseSummary1\": \"Admitted to NICU immediately\",\n  \"caseSummary2\": \"Stable condition after 48 hours\",\n  \"caseSummary3\": \"Discharge planned in 2 weeks\",\n  \"apgarScore\": \"8/9\",\n  \"timeOfBirth\": \"14:30:00\",\n  \"placeOfBirth\": \"Hospital Delivery Room\",\n  \"maternalAgeYears\": 28.5,\n  \"gravida\": 2,\n  \"para\": 1,\n  \"abortionCount\": 0,\n  \"livingChildrenCount\": 1,\n  \"antenatalRiskFactors\": \"Gestational diabetes\",\n  \"diagnosisChecklist\": \"RDS, Jaundice\",\n  \"treatmentGiven\": \"CPAP, Phototherapy\",\n  \"correctedGestationalAgeWeeks\": 34.2,\n  \"feedingMode\": \"Breastfeeding\",\n  \"respirationMode\": \"Room air\",\n  \"dischargePlan\": \"Home care with follow-up\",\n  \"investigationAttachedFlag\": true,\n  \"interimSummaryCompleteFlag\": false,\n  \"remarks\": \"Good progress noted\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/clinical-details",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clinical-details"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Clinical Details by Case ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/clinical-details/case/{{case_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clinical-details",
+                "case",
+                "{{case_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Clinical Case Details",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseId\": {{case_id}},\n  \"primaryDiagnosis\": \"Premature birth with RDS\",\n  \"caseSummary0\": \"Baby born at 32 weeks gestation\",\n  \"caseSummary1\": \"Admitted to NICU immediately\",\n  \"caseSummary2\": \"Stable condition after 72 hours\",\n  \"caseSummary3\": \"Discharge planned in 3 weeks\",\n  \"apgarScore\": \"8/9\",\n  \"timeOfBirth\": \"14:30:00\",\n  \"placeOfBirth\": \"Hospital Delivery Room\",\n  \"maternalAgeYears\": 28.5,\n  \"gravida\": 2,\n  \"para\": 1,\n  \"abortionCount\": 0,\n  \"livingChildrenCount\": 1,\n  \"antenatalRiskFactors\": \"Gestational diabetes\",\n  \"diagnosisChecklist\": \"RDS, Jaundice, Anemia\",\n  \"treatmentGiven\": \"CPAP, Phototherapy, Iron supplements\",\n  \"correctedGestationalAgeWeeks\": 35.1,\n  \"feedingMode\": \"Mixed feeding\",\n  \"respirationMode\": \"Room air\",\n  \"dischargePlan\": \"Home care with extended follow-up\",\n  \"investigationAttachedFlag\": true,\n  \"interimSummaryCompleteFlag\": true,\n  \"remarks\": \"Excellent progress noted\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/clinical-details/{{clinical_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clinical-details",
+                "{{clinical_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Panel Assignment",
+      "item": [
+        {
+          "name": "Create Panel Assignment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseId\": {{case_id}},\n  \"panelType\": \"Clinical\",\n  \"reviewerUserId\": {{user_id}},\n  \"assignedBy\": {{user_id}},\n  \"deadline\": \"2026-04-30\",\n  \"notes\": \"Please review clinical details\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/panel-assignments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "panel-assignments"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Panel Assignments by Case ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/panel-assignments/case/{{case_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "panel-assignments",
+                "case",
+                "{{case_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Panel Assignments by Reviewer",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/panel-assignments/reviewer/{{user_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "panel-assignments",
+                "reviewer",
+                "{{user_id}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Panel Assignment Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assignmentStatus\": \"In_Progress\",\n  \"notes\": \"Started reviewing the case\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/panel-assignments/{{panel_assignment_id}}/status",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "panel-assignments",
+                "{{panel_assignment_id}}",
+                "status"
               ]
             }
           }
