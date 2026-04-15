@@ -33,6 +33,11 @@
       "key": "balance_snapshot_id",
       "value": "1",
       "type": "string"
+    },
+    {
+      "key": "case_id",
+      "value": "1",
+      "type": "string"
     }
   ],
   "item": [
@@ -582,6 +587,55 @@
                 "balance-snapshots",
                 "user",
                 "{{user_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Case",
+      "item": [
+        {
+          "name": "Create Case",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hospitalId\": {{hospital_id}},\n  \"processType\": \"BRC\",\n  \"caseCategory\": \"Organ Donation\",\n  \"statusNfiLevel\": \"Pending\",\n  \"statusPanelLevel\": \"Pending\",\n  \"createdBy\": {{user_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/cases",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "cases"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Case by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/cases/{{case_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "cases",
+                "{{case_id}}"
               ]
             }
           }
