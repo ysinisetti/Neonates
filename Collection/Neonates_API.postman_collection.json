@@ -28,6 +28,11 @@
       "key": "user_id",
       "value": "1",
       "type": "string"
+    },
+    {
+      "key": "balance_snapshot_id",
+      "value": "1",
+      "type": "string"
     }
   ],
   "item": [
@@ -489,6 +494,93 @@
               "path": [
                 "api",
                 "users",
+                "{{user_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "BalanceSnapshot",
+      "item": [
+        {
+          "name": "Create Balance Snapshot",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dateId\": 20260414,\n  \"bankAmount\": 100000.50,\n  \"fdAmount\": 50000.25,\n  \"capturedBy\": {{user_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/balance-snapshots",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "balance-snapshots"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Snapshots by Date",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/balance-snapshots/date/20260414",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "balance-snapshots",
+                "date",
+                "20260414"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Latest Balance Snapshot",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/balance-snapshots/latest",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "balance-snapshots",
+                "latest"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Snapshots by User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/balance-snapshots/user/{{user_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "balance-snapshots",
+                "user",
                 "{{user_id}}"
               ]
             }
