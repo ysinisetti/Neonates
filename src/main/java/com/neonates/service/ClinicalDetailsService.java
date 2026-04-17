@@ -1,6 +1,7 @@
 package com.neonates.service;
 
 import com.neonates.entity.ClinicalDetails;
+import com.neonates.mapper.ClinicalDetailsMapper;
 import com.neonates.repository.ClinicalDetailsRepository;
 import com.neonates.request.ClinicalDetailsRequest;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.Optional;
 public class ClinicalDetailsService {
 
     private final ClinicalDetailsRepository repository;
+    private final ClinicalDetailsMapper mapper;
 
     @Transactional
     public ClinicalDetails saveOrUpdateClinicalDetails(ClinicalDetailsRequest request) {
@@ -26,54 +28,24 @@ public class ClinicalDetailsService {
 
         if (existingOpt.isPresent()) {
             details = existingOpt.get();
+            mapper.updateEntityFromRequest(request, details);
         } else {
-            details = new ClinicalDetails();
-            details.setCaseId(request.getCaseId());
+            details = mapper.toEntity(request);
         }
-
-        // Mapping fields
-        details.setAntenatalRiskFactors(request.getAntenatalRiskFactors());
-        details.setRiskNotes(request.getRiskNotes());
-        details.setDiagnoses(request.getDiagnoses());
-        details.setOtherDiagnosis(request.getOtherDiagnosis());
-        details.setRespirationSupport(request.getRespirationSupport());
-        
-        details.setIvAntibiotics(request.getIvAntibiotics() != null ? request.getIvAntibiotics() : false);
-        details.setIonotropes(request.getIonotropes() != null ? request.getIonotropes() : false);
-        details.setTpn(request.getTpn() != null ? request.getTpn() : false);
-        
-        details.setOtherTreatment(request.getOtherTreatment());
-        details.setCurrentDayOfLife(request.getCurrentDayOfLife());
-        details.setCurrentWeightKg(request.getCurrentWeightKg());
-        details.setCorrectedGestationalAgeWeeks(request.getCorrectedGestationalAgeWeeks());
-        
-        details.setMechanicalVentilation(request.getMechanicalVentilation() != null ? request.getMechanicalVentilation() : false);
-        details.setCpap(request.getCpap() != null ? request.getCpap() : false);
-        details.setHfnc(request.getHfnc() != null ? request.getHfnc() : false);
-        details.setOxygenSupport(request.getOxygenSupport() != null ? request.getOxygenSupport() : false);
-        
-        details.setNpo(request.getNpo() != null ? request.getNpo() : false);
-        details.setOgFeeding(request.getOgFeeding() != null ? request.getOgFeeding() : false);
-        details.setPaladaFeeding(request.getPaladaFeeding() != null ? request.getPaladaFeeding() : false);
-        details.setDbfFeeding(request.getDbfFeeding() != null ? request.getDbfFeeding() : false);
-        
-        details.setOtherFeeding(request.getOtherFeeding());
-        details.setDischargePlan(request.getDischargePlan());
-        
-        details.setLabsAttached(request.getLabsAttached() != null ? request.getLabsAttached() : false);
-        details.setXrayAttached(request.getXrayAttached() != null ? request.getXrayAttached() : false);
-        details.setScansAttached(request.getScansAttached() != null ? request.getScansAttached() : false);
-        details.setOtherReportsAttached(request.getOtherReportsAttached() != null ? request.getOtherReportsAttached() : false);
-        
-        details.setOtherInvestigationDetails(request.getOtherInvestigationDetails());
-        details.setRemarks(request.getRemarks());
-        details.setSignatureFilePath(request.getSignatureFilePath());
-        details.setSignedDate(request.getSignedDate());
 
         return repository.save(details);
     }
 
     public Optional<ClinicalDetails> getByCaseId(Long caseId) {
         return repository.findByCaseId(caseId);
+    }
+
+    @Transactional
+    public ClinicalDetails updateClinicalDetails(Long clinicalId, ClinicalDetailsRequest request) {
+        ClinicalDetails details = repository.findById(clinicalId)
+                .orElseThrow(() -> new IllegalArgumentException("Clinical details not found for ID: " + clinicalId));
+        
+        mapper.updateEntityFromRequest(request, details);
+        return repository.save(details);
     }
 }

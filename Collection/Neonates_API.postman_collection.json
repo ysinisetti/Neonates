@@ -1214,6 +1214,33 @@
               ]
             }
           }
+        },
+        {
+          "name": "Update Clinical Details by ID",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseId\": {{case_id}},\n  \"antenatalRiskFactors\": \"Updated Risk\",\n  \"currentDayOfLife\": 3\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/clinical-details/{{clinical_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clinical-details",
+                "{{clinical_id}}"
+              ]
+            }
+          }
         }
       ]
     }

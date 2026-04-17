@@ -39,4 +39,15 @@ public class ClinicalDetailsController {
                     .body(ApiResponse.success("Clinical details not found", null, HttpStatus.NOT_FOUND.value(), false));
         }
     }
+
+    @PutMapping("/{clinicalId}")
+    public ResponseEntity<ApiResponse<ClinicalDetails>> updateClinicalDetails(@PathVariable Long clinicalId, @RequestBody ClinicalDetailsRequest request) {
+        try {
+            ClinicalDetails updatedDetails = service.updateClinicalDetails(clinicalId, request);
+            return ResponseEntity.ok(ApiResponse.success("Clinical details updated successfully", updatedDetails, HttpStatus.OK.value(), true));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ApiResponse.success(e.getMessage(), null, HttpStatus.NOT_FOUND.value(), false));
+        }
+    }
 }
