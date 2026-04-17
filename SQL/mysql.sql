@@ -1329,6 +1329,67 @@ CREATE TABLE `hope_story` (
     ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE nfi_bms_cmdws.clinical_details (
+  clinical_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  case_id BIGINT NOT NULL,
+
+  -- Risk Factors
+  antenatal_risk_factors TEXT,
+  risk_notes TEXT,
+
+  -- Diagnosis
+  diagnoses TEXT,
+  other_diagnosis TEXT,
+
+  -- Treatment (General)
+  respiration_support TEXT,
+  iv_antibiotics BOOLEAN,
+  ionotropes BOOLEAN,
+  tpn BOOLEAN,
+  other_treatment TEXT,
+
+  -- Current Status
+  current_day_of_life INT,
+  current_weight_kg DECIMAL(5,2),
+  corrected_gestational_age_weeks DECIMAL(5,2),
+
+  -- Respiration (Structured)
+  mechanical_ventilation BOOLEAN,
+  cpap BOOLEAN,
+  hfnc BOOLEAN,
+  oxygen_support BOOLEAN,
+
+  -- Feeding
+  npo BOOLEAN,
+  og_feeding BOOLEAN,
+  palada_feeding BOOLEAN,
+  dbf_feeding BOOLEAN,
+  other_feeding TEXT,
+
+  -- Plan
+  discharge_plan TEXT,
+
+  -- Investigations
+  labs_attached BOOLEAN,
+  xray_attached BOOLEAN,
+  scans_attached BOOLEAN,
+  other_reports_attached BOOLEAN,
+  other_investigation_details TEXT,
+
+  -- Remarks & Signature
+  remarks TEXT,
+  signature_file_path VARCHAR(255),
+  signed_date DATETIME,
+
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  CONSTRAINT fk_clinical_case
+    FOREIGN KEY (case_id)
+    REFERENCES case_master(case_id)
+    ON DELETE CASCADE
+);
+
 -- ============================================================================
 -- 7. LATE-BOUND FOREIGN KEYS / HELPER VIEWS
 -- ============================================================================
