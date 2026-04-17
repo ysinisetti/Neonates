@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/clinical-details")
+@RequestMapping("/api/clinical-case-details")
 @RequiredArgsConstructor
 @CrossOrigin
 public class ClinicalCaseDetailsController {

@@ -1090,6 +1090,132 @@
           }
         }
       ]
+    },
+    {
+      "name": "Beneficiary Interview",
+      "item": [
+        {
+          "name": "Create Interview",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseId\": {{case_id}},\n  \"interviewStatus\": \"Not_Started\",\n  \"outcome\": \"\",\n  \"notes\": \"Test notes\",\n  \"interviewedBy\": {{user_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/interviews",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "interviews"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Interview",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseId\": {{case_id}},\n  \"interviewStatus\": \"Completed\",\n  \"outcome\": \"Approved\",\n  \"notes\": \"Updated test notes\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/interviews/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "interviews",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Interview by Case ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/interviews/case/{{case_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "interviews",
+                "case",
+                "{{case_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Clinical Details",
+      "item": [
+        {
+          "name": "Save or Update Clinical Details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"caseId\": {{case_id}},\n  \"antenatalRiskFactors\": \"None\",\n  \"diagnoses\": \"Normal\",\n  \"currentDayOfLife\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/clinical-details",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clinical-details"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Clinical Details by Case ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/clinical-details/{{case_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "clinical-details",
+                "{{case_id}}"
+              ]
+            }
+          }
+        }
+      ]
     }
   ]
 }

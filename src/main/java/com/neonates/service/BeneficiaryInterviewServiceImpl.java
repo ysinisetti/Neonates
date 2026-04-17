@@ -2,11 +2,11 @@ package com.neonates.service;
 
 import com.neonates.Enum.InterviewStatus;
 import com.neonates.entity.BeneficiaryInterview;
-import com.neonates.entity.CaseMaster;
+import com.neonates.entity.Case;
 import com.neonates.exception.ResourceNotFoundException;
 import com.neonates.mapper.BeneficiaryInterviewMapper;
 import com.neonates.repository.BeneficiaryInterviewRepository;
-import com.neonates.repository.CaseMasterRepository; // Assuming exists, but need to create if not
+import com.neonates.repository.CaseRepository;
 import com.neonates.request.BeneficiaryInterviewCreateRequest;
 import com.neonates.response.BeneficiaryInterviewResponse;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +20,14 @@ import java.time.LocalDateTime;
 public class BeneficiaryInterviewServiceImpl implements BeneficiaryInterviewService {
 
     private final BeneficiaryInterviewRepository interviewRepository;
-    private final CaseMasterRepository caseMasterRepository; // Need to create this
+    private final CaseRepository caseRepository;
     private final BeneficiaryInterviewMapper mapper;
 
     @Override
     @Transactional
     public BeneficiaryInterviewResponse createInterview(BeneficiaryInterviewCreateRequest request) {
         // Validate case exists
-        CaseMaster caseMaster = caseMasterRepository.findById(request.getCaseId())
+        Case caseMaster = caseRepository.findById(request.getCaseId())
                 .orElseThrow(() -> new ResourceNotFoundException("Case not found with id: " + request.getCaseId()));
 
         // Check if interview already exists for the case
