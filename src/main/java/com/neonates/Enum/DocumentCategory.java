@@ -1,6 +1,10 @@
 package com.neonates.Enum;
 
+import lombok.Getter;
+
+@Getter
 public enum DocumentCategory {
+    GENERAL("general-docs"),
     MEDICAL("medical-docs"),
     FINANCIAL("financial-docs"),
     KYC("kyc-docs");
